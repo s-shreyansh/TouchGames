@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <img src="touch games.png" alt="img"> -->
+    <title>About - Touch Games</title>
+    <style>
+        /* Reset and base styles - consistent with main page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Navigation - consistent with main page */
+        nav {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hamburger menu for mobile */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        /* About page specific styles */
+        .about-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://source.unsplash.com/random/1600x900/?gaming') no-repeat center center/cover;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+        }
+        
+        .about-hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .about-hero-content p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-content {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        
+        .about-section {
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-section h2 {
+            color: #6e8efb;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .about-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #6e8efb, #a777e3);
+        }
+        
+        .about-section p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 5px solid #f0f0f0;
+        }
+        
+        .team-member h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-member p.position {
+            color: #6e8efb;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: #666;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: #6e8efb;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                right: 0;
+                top: 70px;
+                background: linear-gradient(135deg, #6e8efb, #a777e3);
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+                clip-path: circle(0px at 90% -10%);
+                transition: all 0.5s ease-out;
+                pointer-events: none;
+            }
+            
+            .nav-links.active {
+                clip-path: circle(1000px at 90% -10%);
+                pointer-events: all;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+            
+            .about-hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about-hero-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Touch Games</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+            </ul>
+            <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </nav>
+    
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <h1>About Touch Games</h1>
+            <p>Immerse in pressure free, time pass games which do not take too much of your time and energy and take off your mind from this world for a short while. These games are good for kids and adults alike, create a highscore and remember it yourself. Feel elevated and stress free. Enjoy!!</p>
+        </div>
+    </section>
+    
+    <div class="about-content">
+        <section class="about-section">
+            <h2>Our Story</h2>
+            <p>There is no story, this website is made for fun.&#128514;</p>
+        </section>
+        
+        <section class="about-section">
+            <h2>Our Philosophy</h2>
+            <p>At Touch Games, you just come and play, we don't bore you.&#128541;</p>
+        </section>
+        
+        <!-- <section class="about-section">
+            <h2>Our Team</h2>
+            <p>Behind every great game is a team of passionate individuals. Meet some of the key people who make Touch Games special:</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson">
+                    <h3>Sarah Johnson</h3>
+                    <p class="position">CEO & Founder</p>
+                    <p>Visionary leader and game design expert with 15 years in the industry.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen">
+                    <h3>Michael Chen</h3>
+                    <p class="position">Lead Developer</p>
+                    <p>Technical wizard who turns creative ideas into smooth gameplay experiences.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma Rodriguez">
+                    <h3>Emma Rodriguez</h3>
+                    <p class="position">Art Director</p>
+                    <p>Brings our games to life with stunning visuals and immersive worlds.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-artstation"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="David Kim">
+                    <h3>David Kim</h3>
+                    <p class="position">Community Manager</p>
+                    <p>Connects with our players and ensures their voices are heard.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="about-section">
+            <h2>Join Our Community</h2>
+            <p>We love hearing from our players! Join our growing community to stay updated on new releases, provide feedback, and connect with other gamers.</p>
+            <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="#" style="background: #6e8efb; color: white; padding: 0.8rem 1.5rem; border-radius: 5px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">Discord</a>
+                <a href="#" style="background: #1DA1F2; color: white; padding: 0.8rem 1.5rem; border-radius: 5px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">Twitter</a>
+                <a href="#" style="background: #4267B2; color: white; padding: 0.8rem 1.5rem; border-radius: 5px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">Facebook</a>
+                <a href="#" style="background: #E1306C; color: white; padding: 0.8rem 1.5rem; border-radius: 5px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">Instagram</a>
+            </div>
+        </section> -->
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Touch Games. All rights reserved.</p>
+    </footer>
+    
+    <!-- Font Awesome for social icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <script>
+        // Mobile navigation toggle - consistent with main page
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+        
+        // Simple animation for team members
+        document.querySelectorAll('.team-member').forEach((member, index) => {
+            member.style.opacity = '0';
+            member.style.transform = 'translateY(20px)';
+            member.style.transition = `all 0.5s ease ${index * 0.1}s`;
+            
+            // Trigger animation when element comes into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+            
+            observer.observe(member);
+        });
+    </script>
+</body>
+</html>
